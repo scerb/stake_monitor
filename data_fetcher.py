@@ -7,6 +7,10 @@ from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from web3 import Web3
 
+def get_current_prices():
+    """Fetch current prices directly from APIs"""
+    return fetch_prices() 
+
 # Initialize Web3 with multiple fallback providers
 def init_web3():
     providers = [
