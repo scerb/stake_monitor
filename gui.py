@@ -129,7 +129,7 @@ class CortensorDashboard(QMainWindow):
         self.table = QTableWidget()
         self.table.setColumnCount(8)
         self.table.setHorizontalHeaderLabels([
-            "Address", "ETH", "CORT", "Staked", "Daily Reward", "Time Staked", "ETH ($)", "CORT ($)"
+            "Address", "ETH", "COR", "Staked", "Daily Reward", "Time Staked", "$ETH", "$CORT"
         ])
         self.table.horizontalHeader().sectionClicked.connect(self.handle_sort)
         layout.addWidget(self.table)
