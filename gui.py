@@ -4,18 +4,18 @@ import json
 import logging
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
-    QPushButton, QTableWidget, QTableWidgetItem, QLineEdit, QLabel, QTabWidget
+    QPushButton, QTableWidget, QTableWidgetItem, QLineEdit, QLabel, 
+    QTabWidget, QFrame
 )
 from PyQt5.QtCore import Qt, QTimer
+from data_fetcher import get_current_prices
 
-# Import data fetcher module (will be provided separately)
 from data_fetcher import (
     load_addresses_from_data_json as load_addresses,
     fetch_data
 )
 from balance_history_tab import BalanceHistoryTab
 
-# Configure logging
 def setup_logging():
     log_path = get_data_path('app.log')
     logging.basicConfig(
@@ -25,24 +25,18 @@ def setup_logging():
     )
     logging.info("Application started")
 
-# Path handling for both dev and compiled exe
 def get_data_path(filename):
     """Get the correct path for data files, works for both dev and packaged exe"""
     if getattr(sys, 'frozen', False):
-        # Running as compiled exe
         base_path = os.path.dirname(sys.executable)
     else:
-        # Running in dev mode
         base_path = os.path.dirname(os.path.abspath(__file__))
-    
     return os.path.join(base_path, filename)
 
 def save_addresses_only(address_list):
     try:
         data_path = get_data_path("data.json")
         logging.info(f"Saving addresses to {data_path}")
-        
-        # Try to load existing data
         try:
             with open(data_path, "r") as f:
                 data = json.load(f)
@@ -53,11 +47,9 @@ def save_addresses_only(address_list):
 
         data["addresses"] = address_list
 
-        # Save the updated data
         with open(data_path, "w") as f:
             json.dump(data, f, indent=4)
         logging.info("Addresses saved successfully")
-        
     except Exception as e:
         logging.error(f"Failed to save address list: {str(e)}")
         print("Failed to save address list:", e)
@@ -66,8 +58,6 @@ def save_stats_data(stats):
     try:
         data_path = get_data_path("data.json")
         logging.info(f"Saving stats data to {data_path}")
-        
-        # Try to load existing data
         try:
             with open(data_path, "r") as f:
                 existing_data = json.load(f)
@@ -79,11 +69,9 @@ def save_stats_data(stats):
 
         existing_data.update(stats)
 
-        # Save the updated data
         with open(data_path, "w") as f:
             json.dump(existing_data, f, indent=4)
         logging.info("Stats data saved successfully")
-            
     except Exception as e:
         logging.error(f"Failed to save stats: {str(e)}")
         print("Failed to save stats:", e)
@@ -96,6 +84,10 @@ class CortensorDashboard(QMainWindow):
         
         self.setWindowTitle("Cortensor Dashboard")
         self.setGeometry(100, 100, 1100, 600)
+
+        # Initialize price variables
+        self.eth_price = 0.0
+        self.cor_price = 0.0
 
         self.tab_widget = QTabWidget()
         self.setCentralWidget(self.tab_widget)
@@ -115,21 +107,47 @@ class CortensorDashboard(QMainWindow):
         self.init_main_tab()
         self.init_address_tab()
 
+        # Setup timers
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.load_data)
-
         self.history_interval_minutes = self.load_interval_from_data_json()
         self.timer.start(self.history_interval_minutes * 60 * 1000)
+
+        self.price_timer = QTimer(self)
+        self.price_timer.timeout.connect(self.update_prices)
+        self.price_timer.start(30000)  # Update prices every 30 seconds
 
         self.load_data()
 
     def init_main_tab(self):
         layout = QVBoxLayout()
 
+        # Price display at the top
+        price_layout = QHBoxLayout()
+        
+        self.eth_price_label = QLabel("ETH: $0.00")
+        self.eth_price_label.setStyleSheet("font-weight: bold; font-size: 14px; color: #3498db;")
+        price_layout.addWidget(self.eth_price_label)
+        
+        self.cor_price_label = QLabel("COR: $0.00")
+        self.cor_price_label.setStyleSheet("font-weight: bold; font-size: 14px; color: #27ae60;")
+        price_layout.addWidget(self.cor_price_label)
+        
+        price_layout.addStretch()  # Push prices to the right
+        
+        layout.addLayout(price_layout)
+
+        # Separator line
+        line = QFrame()
+        line.setFrameShape(QFrame.HLine)
+        line.setFrameShadow(QFrame.Sunken)
+        layout.addWidget(line)
+
+        # Main table
         self.table = QTableWidget()
         self.table.setColumnCount(8)
         self.table.setHorizontalHeaderLabels([
-            "Address", "ETH", "COR", "Staked", "Daily Reward", "Time Staked", "$ETH", "$CORT"
+            "Address", "ETH", "COR", "Staked", "Daily Reward", "Time Staked", "$ETH", "$COR"
         ])
         self.table.horizontalHeader().sectionClicked.connect(self.handle_sort)
         layout.addWidget(self.table)
@@ -139,6 +157,46 @@ class CortensorDashboard(QMainWindow):
         layout.addWidget(refresh_btn)
 
         self.main_tab.setLayout(layout)
+
+    def update_prices(self):
+        """Fetch and display current prices directly from APIs"""
+        try:
+            eth_price, cor_price = get_current_prices()
+            
+            # Update our price variables
+            self.eth_price = eth_price
+            self.cor_price = cor_price
+            
+            # Update the display
+            self.eth_price_label.setText(f"ETH: ${eth_price:,.2f}")
+            self.cor_price_label.setText(f"COR: ${cor_price:,.6f}")  # More decimals for COR
+            
+            # Optional: Flash the background when updated
+            self.flash_price_background()
+            
+        except Exception as e:
+            logging.error(f"Error updating prices: {str(e)}")
+            # Show error state
+            self.eth_price_label.setText("ETH: API Error")
+            self.cor_price_label.setText("COR: API Error")
+
+    def flash_price_background(self):
+        """Visual feedback when prices update"""
+        self.eth_price_label.setStyleSheet(
+            "font-weight: bold; font-size: 14px; color: #3498db;"
+            "background-color: #e3f2fd;"
+        )
+        self.cor_price_label.setStyleSheet(
+            "font-weight: bold; font-size: 14px; color: #27ae60;"
+            "background-color: #ffebee;"
+        )
+        
+        # Reset after 500ms
+        QTimer.singleShot(500, lambda: [
+            self.eth_price_label.setStyleSheet("font-weight: bold; font-size: 14px; color: #3498db;"),
+            self.cor_price_label.setStyleSheet("font-weight: bold; font-size: 14px; color: #27ae60;")
+        ])
+
 
     def handle_sort(self, column):
         if column < 0 or column >= self.table.columnCount():
