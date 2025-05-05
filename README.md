@@ -1,4 +1,6 @@
 # stake_monitor
+compare your staking addresses with others to find out where you rank!
+
 cortensor staking and monitoring app in windows just download exe and run.
 
 linux- pull files, need to run in venv, any missing modules install as needed eg pip3 install matplotlib
