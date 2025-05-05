@@ -12,7 +12,8 @@ from data_fetcher import get_current_prices
 
 from data_fetcher import (
     load_addresses_from_data_json as load_addresses,
-    fetch_data
+    fetch_data,
+    get_current_prices
 )
 from balance_history_tab import BalanceHistoryTab
 
@@ -86,6 +87,7 @@ class CortensorDashboard(QMainWindow):
         self.setGeometry(100, 100, 1100, 600)
 
         # Initialize price variables
+        self.btc_price = 0.0
         self.eth_price = 0.0
         self.cor_price = 0.0
 
@@ -125,14 +127,18 @@ class CortensorDashboard(QMainWindow):
         # Price display at the top
         price_layout = QHBoxLayout()
         
+        self.btc_price_label = QLabel("BTC: $0.00")
+        self.btc_price_label.setStyleSheet("font-weight: bold; font-size: 14px; color: #f7931a;")  # Bitcoin orange
+        
         self.eth_price_label = QLabel("ETH: $0.00")
         self.eth_price_label.setStyleSheet("font-weight: bold; font-size: 14px; color: #3498db;")
-        price_layout.addWidget(self.eth_price_label)
-        
+                
         self.cor_price_label = QLabel("COR: $0.00")
         self.cor_price_label.setStyleSheet("font-weight: bold; font-size: 14px; color: #27ae60;")
-        price_layout.addWidget(self.cor_price_label)
         
+        price_layout.addWidget(self.btc_price_label)
+        price_layout.addWidget(self.eth_price_label)
+        price_layout.addWidget(self.cor_price_label)
         price_layout.addStretch()  # Push prices to the right
         
         layout.addLayout(price_layout)
@@ -161,15 +167,17 @@ class CortensorDashboard(QMainWindow):
     def update_prices(self):
         """Fetch and display current prices directly from APIs"""
         try:
-            eth_price, cor_price = get_current_prices()
+            eth_price, cor_price, btc_price = get_current_prices()
             
             # Update our price variables
+            self.btc_price = btc_price
             self.eth_price = eth_price
             self.cor_price = cor_price
             
             # Update the display
-            self.eth_price_label.setText(f"ETH: ${eth_price:,.2f}")
-            self.cor_price_label.setText(f"COR: ${cor_price:,.6f}")  # More decimals for COR
+            self.btc_price_label.setText(f"<font color='#f7931a'>BTC: ${btc_price:,.2f}</font>")
+            self.eth_price_label.setText(f"<font color='#3498db'>ETH: ${eth_price:,.2f}</font>")
+            self.cor_price_label.setText(f"<font color='#27ae60'>COR: ${cor_price:,.6f}</font>")
             
             # Optional: Flash the background when updated
             self.flash_price_background()
@@ -177,22 +185,34 @@ class CortensorDashboard(QMainWindow):
         except Exception as e:
             logging.error(f"Error updating prices: {str(e)}")
             # Show error state
-            self.eth_price_label.setText("ETH: API Error")
-            self.cor_price_label.setText("COR: API Error")
+            self.btc_price_label.setText("<font color='#f7931a'>BTC: API Error</font>")
+            self.eth_price_label.setText("<font color='#3498db'>ETH: API Error</font>")
+            self.cor_price_label.setText("<font color='#27ae60'>COR: API Error</font>")
 
     def flash_price_background(self):
         """Visual feedback when prices update"""
-        self.eth_price_label.setStyleSheet(
-            "font-weight: bold; font-size: 14px; color: #3498db;"
-            "background-color: #e3f2fd;"
-        )
-        self.cor_price_label.setStyleSheet(
-            "font-weight: bold; font-size: 14px; color: #27ae60;"
-            "background-color: #ffebee;"
-        )
+        self.btc_price_label.setStyleSheet("""
+            font-weight: bold; 
+            font-size: 14px; 
+            color: #f7931a;
+            background-color: #fff3e0;
+        """)
+        self.eth_price_label.setStyleSheet("""
+            font-weight: bold; 
+            font-size: 14px; 
+            color: #3498db;
+            background-color: #e3f2fd;
+        """)
+        self.cor_price_label.setStyleSheet("""
+            font-weight: bold;
+            font-size: 14px;
+            color: #27ae60;
+            background-color: #e8f5e9;
+        """)
         
         # Reset after 500ms
         QTimer.singleShot(500, lambda: [
+            self.btc_price_label.setStyleSheet("font-weight: bold; font-size: 14px; color: #f7931a;"),
             self.eth_price_label.setStyleSheet("font-weight: bold; font-size: 14px; color: #3498db;"),
             self.cor_price_label.setStyleSheet("font-weight: bold; font-size: 14px; color: #27ae60;")
         ])
@@ -248,7 +268,7 @@ class CortensorDashboard(QMainWindow):
                 logging.warning("No addresses found to load")
                 return
 
-            stats = fetch_data(self.addresses)
+            stats = fetch_data(self.addresses, self.btc_price)
             if not stats:
                 logging.error("No data returned from fetch_data")
                 return
