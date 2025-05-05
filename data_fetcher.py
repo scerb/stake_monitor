@@ -129,18 +129,20 @@ def load_addresses_from_data_json():
     return []
 
 def fetch_prices():
-    """Fetch ETH and Cortensor prices with retries and fallbacks"""
+    """Fetch ETH, COR and BTC prices with retries and fallbacks"""
     retries = 3
     for attempt in range(retries):
         try:
-            # ETH price
-            eth_response = requests.get(
+            # Get ETH and BTC prices from CoinGecko
+            price_response = requests.get(  # Changed variable name from 'response' to 'price_response'
                 "https://api.coingecko.com/api/v3/simple/price",
-                params={"ids": "ethereum", "vs_currencies": "usd"},
+                params={"ids": "ethereum,bitcoin", "vs_currencies": "usd"},
                 timeout=10
             )
-            eth_response.raise_for_status()
-            eth_price = eth_response.json()["ethereum"]["usd"]
+            price_response.raise_for_status()
+            price_data = price_response.json()  # Changed variable name
+            eth_price = price_data["ethereum"]["usd"]
+            btc_price = price_data["bitcoin"]["usd"]
 
             # Cortensor price with fallback
             try:
@@ -154,19 +156,18 @@ def fetch_prices():
                 print(f"GeckoTerminal API failed, using fallback price: {e}")
                 cortensor_price = 0.0001 * eth_price  # Example fallback ratio
 
-            return eth_price, cortensor_price
+            return eth_price, cortensor_price, btc_price
             
         except Exception as e:
             print(f"Price fetch attempt {attempt + 1} failed: {e}")
             if attempt < retries - 1:
                 time.sleep(2)
     
-    return 0.0, 0.0  # Return safe defaults if all retries fail
+    return 0.0, 0.0, 0.0 # Return safe defaults if all retries fail
 
-def fetch_data(miner_ids):
-    """Fetch all data using ThreadPoolExecutor for better reliability"""
+def fetch_data(miner_ids, btc_price=None):
     results = {}
-    eth_price, cortensor_price = fetch_prices()
+    eth_price, cortensor_price, _ = fetch_prices()
     
     def process_address(addr):
         try:
