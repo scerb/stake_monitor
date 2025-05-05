@@ -41,9 +41,10 @@ def get_data_path(filename):
         base_path = os.path.dirname(os.path.abspath(__file__))
     return os.path.join(base_path, filename)
 
-# Cortensor token and staking contract addresses
+# Contract addresses
 CORTENSOR_TOKEN_ADDRESS = Web3.to_checksum_address("0x8e0EeF788350f40255D86DFE8D91ec0AD3a4547F")
 STAKING_CONTRACT_ADDRESS = Web3.to_checksum_address("0x634DAEeCF243c844263D206e1DcF68F310e6BB19")
+REWARDS_CONTRACT_ADDRESS = Web3.to_checksum_address("0x6876e661AE0F740C9132B7B8f26f7D245cFc62C1")
 GECKO_POOL_ID = "eth_0x8981dc572dfb436d7d23f1287dee031f833234b9"
 
 # ABIs
@@ -77,9 +78,34 @@ STAKING_ABI = [
     }
 ]
 
+REWARDS_ABI = [
+    {
+        "inputs": [{"internalType": "address", "name": "stakeHolder", "type": "address"}],
+        "name": "rewardOf",
+        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [{"internalType": "address", "name": "", "type": "address"}],
+        "name": "staked",
+        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "fixedAPR",
+        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+        "stateMutability": "view",
+        "type": "function"
+    }
+]
+
 # Contract instances
 token_contract = web3.eth.contract(address=CORTENSOR_TOKEN_ADDRESS, abi=ERC20_ABI)
 staking_contract = web3.eth.contract(address=STAKING_CONTRACT_ADDRESS, abi=STAKING_ABI)
+rewards_contract = web3.eth.contract(address=REWARDS_CONTRACT_ADDRESS, abi=REWARDS_ABI)
 
 def time_ago(timestamp):
     """Convert timestamp to human-readable time ago string"""
@@ -134,13 +160,13 @@ def fetch_prices():
     for attempt in range(retries):
         try:
             # Get ETH and BTC prices from CoinGecko
-            price_response = requests.get(  # Changed variable name from 'response' to 'price_response'
+            price_response = requests.get(
                 "https://api.coingecko.com/api/v3/simple/price",
                 params={"ids": "ethereum,bitcoin", "vs_currencies": "usd"},
                 timeout=10
             )
             price_response.raise_for_status()
-            price_data = price_response.json()  # Changed variable name
+            price_data = price_response.json()
             eth_price = price_data["ethereum"]["usd"]
             btc_price = price_data["bitcoin"]["usd"]
 
@@ -164,6 +190,24 @@ def fetch_prices():
                 time.sleep(2)
     
     return 0.0, 0.0, 0.0 # Return safe defaults if all retries fail
+
+def get_rewards_data(address):
+    """Fetch rewards data for a single address"""
+    try:
+        checksum = Web3.to_checksum_address(address)
+        claimable_rewards = rewards_contract.functions.rewardOf(checksum).call()
+        apr = rewards_contract.functions.fixedAPR().call() / 100  # Convert to decimal
+        
+        return {
+            "claimable_rewards": claimable_rewards / 1e18,  # Convert from wei
+            "current_apr": apr
+        }
+    except Exception as e:
+        print(f"Error fetching rewards for {address}: {e}")
+        return {
+            "claimable_rewards": 0,
+            "current_apr": 0
+        }
 
 def fetch_data(miner_ids, btc_price=None):
     results = {}
@@ -190,20 +234,32 @@ def fetch_data(miner_ids, btc_price=None):
             staked_time = shares[1]
             staked_time_ago = time_ago(staked_time)
 
+            # Rewards info
+            rewards_data = get_rewards_data(checksum)
+            claimable_rewards = rewards_data["claimable_rewards"]
+            current_apr = rewards_data["current_apr"]
+
             cortensor_total = cortensor_balance + staked_amount
+            total_value_usd = cortensor_total * cortensor_price
+            rewards_value_usd = claimable_rewards * cortensor_price
 
             result_data = {
                 "eth_balance": round(eth_balance, 4),
                 "eth_value_usd": round(eth_balance * eth_price, 2),
                 "cortensor_balance": round(cortensor_balance, 4),
                 "staked_balance": round(staked_amount, 4),
-                "cortensor_value_usd": round(cortensor_total * cortensor_price, 2),
-                "time_staked_ago": staked_time_ago
+                "cortensor_value_usd": round(total_value_usd, 2),
+                "time_staked_ago": staked_time_ago,
+                "claimable_rewards": round(claimable_rewards, 4),
+                "current_apr": round(current_apr, 4),
+                "rewards_value_usd": round(rewards_value_usd, 2),
+                "daily_reward": round(staked_amount * current_apr / 365, 4)  # Estimated daily reward
             }
 
             print(f"{checksum} -> ETH: {eth_balance:.4f} (${eth_balance * eth_price:.2f}), "
                   f"CORTENSOR: {cortensor_balance:.4f}, STAKED: {staked_amount:.4f}, "
-                  f"TOTAL $: {(cortensor_total * cortensor_price):.2f}, AGO: {staked_time_ago}")
+                  f"REWARDS: {claimable_rewards:.4f}, APR: {current_apr:.2%}, "
+                  f"TOTAL $: {total_value_usd:.2f}, AGO: {staked_time_ago}")
 
             return checksum, result_data
         except Exception as e:

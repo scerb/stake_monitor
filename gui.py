@@ -2,20 +2,29 @@ import os
 import sys
 import json
 import logging
+import requests
+import webbrowser
+import subprocess
+import threading
+from packaging import version
+from datetime import datetime
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QPushButton, QTableWidget, QTableWidgetItem, QLineEdit, QLabel, 
-    QTabWidget, QFrame
+    QTabWidget, QFrame, QMessageBox
 )
 from PyQt5.QtCore import Qt, QTimer
-from data_fetcher import get_current_prices
-
+from PyQt5.QtGui import QClipboard
 from data_fetcher import (
     load_addresses_from_data_json as load_addresses,
     fetch_data,
     get_current_prices
 )
 from balance_history_tab import BalanceHistoryTab
+from address_dialog import AddressDetailsDialog
+
+# Version should match your GitHub release tags (e.g., "1.0.0")
+__version__ = "2.0.0"
 
 def setup_logging():
     log_path = get_data_path('app.log')
@@ -83,13 +92,17 @@ class CortensorDashboard(QMainWindow):
         setup_logging()
         logging.info("Initializing CortensorDashboard")
         
-        self.setWindowTitle("Cortensor Dashboard")
-        self.setGeometry(100, 100, 1100, 600)
+        self.setWindowTitle(f"scerb_stake_monitor v{__version__}")
+        self.setGeometry(100, 100, 1350, 600)  # Increased width for new columns
 
         # Initialize price variables
         self.btc_price = 0.0
         self.eth_price = 0.0
         self.cor_price = 0.0
+        self.current_apr = 0.0  # New APR variable
+
+        # Initialize notes system
+        self.notes_file = get_data_path("address_notes.json")
 
         self.tab_widget = QTabWidget()
         self.setCentralWidget(self.tab_widget)
@@ -119,7 +132,151 @@ class CortensorDashboard(QMainWindow):
         self.price_timer.timeout.connect(self.update_prices)
         self.price_timer.start(30000)  # Update prices every 30 seconds
 
+        # Setup daily script timer
+        self.script_timer = QTimer(self)
+        self.script_timer.timeout.connect(self.run_daily_scripts)
+        self.script_timer.start(24 * 60 * 60 * 1000)  # 24 hours
+
+        # Check for updates after 5 seconds (to avoid blocking startup)
+        QTimer.singleShot(5000, self.check_for_updates)
+        
+        # Also check periodically (e.g., every 24 hours)
+        self.update_timer = QTimer(self)
+        self.update_timer.timeout.connect(self.check_for_updates)
+        self.update_timer.start(24 * 60 * 60 * 1000)  # 24 hours
+
+        # Run scripts immediately on startup (in background)
+        QTimer.singleShot(5000, self.run_daily_scripts)
+
         self.load_data()
+
+    def show_address_details(self, row, col):
+        """Show detailed popup for clicked address"""
+        if col != 0:  # Only for address column
+            return
+        
+        address = self.table.item(row, 0).text()
+        if address == "TOTAL":
+            return
+
+        # Load staker balances data
+        try:
+            with open(get_data_path("staker_balances.json"), "r") as f:
+                staker_data = json.load(f)
+        except Exception as e:
+            logging.error(f"Error loading staker data: {e}")
+            staker_data = {}
+
+        # Prepare table data
+        table_data = {
+            "eth_balance": float(self.table.item(row, 1).text()),
+            "cortensor_balance": float(self.table.item(row, 2).text()),
+            "staked_balance": float(self.table.item(row, 3).text()),
+            "daily_reward": float(self.table.item(row, 4).text()),
+            "claimable_rewards": float(self.table.item(row, 5).text()),
+            "time_staked_ago": self.table.item(row, 6).text(),
+            "rewards_value_usd": float(self.table.item(row, 7).text().replace('$', '')),
+            "eth_value_usd": float(self.table.item(row, 8).text().replace('$', '')),
+            "cortensor_value_usd": float(self.table.item(row, 9).text().replace('$', ''))
+        }
+
+        # Get all addresses data from the current table
+        all_addresses_data = {}
+        for r in range(self.table.rowCount() - 1):  # Skip TOTAL row
+            addr = self.table.item(r, 0).text()
+            if addr == "TOTAL":
+                continue
+            all_addresses_data[addr] = {
+                "cortensor_balance": float(self.table.item(r, 2).text()),
+                "staked_balance": float(self.table.item(r, 3).text()),
+                "claimable_rewards": float(self.table.item(r, 5).text())
+            }
+
+        # Create and show dialog
+        dialog = AddressDetailsDialog(
+            parent=self,
+            address=address,
+            table_data=table_data,
+            notes_file=self.notes_file,
+            staker_data=staker_data,
+            all_addresses_data=all_addresses_data
+        )
+        dialog.exec_()
+        
+    def run_daily_scripts(self):
+        """Run the daily update scripts in sequence using threads"""
+        try:
+            logging.info("Starting daily script execution")
+            
+            # Run stake_encrypt.py first in a thread
+            encrypt_script = get_data_path("stake_encrypt.py")
+            if os.path.exists(encrypt_script):
+                def run_encrypt():
+                    subprocess.run([sys.executable, encrypt_script], check=True)
+                    logging.info("Completed stake_encrypt.py")
+                    
+                    # Then run stake_position.py in another thread
+                    from stake_position import run_in_thread
+                    def position_callback():
+                        logging.info("Completed stake_position.py")
+                        # Refresh the data if needed
+                        QTimer.singleShot(1000, self.load_data)
+                    
+                    run_in_thread(callback=position_callback)
+                
+                thread = threading.Thread(target=run_encrypt)
+                thread.daemon = True
+                thread.start()
+            
+            logging.info("Daily scripts started in background threads")
+        except Exception as e:
+            logging.error(f"Error running scripts: {e}")
+
+    def check_for_updates(self):
+        """Check GitHub for new releases and notify user if update is available"""
+        try:
+            response = requests.get(
+                "https://api.github.com/repos/scerb/stake_monitor/releases/latest",
+                timeout=10
+            )
+            response.raise_for_status()
+            latest_release = response.json()
+            latest_version = latest_release['tag_name'].lstrip('v')
+            
+            if version.parse(latest_version) > version.parse(__version__):
+                self.show_update_notification(latest_version, latest_release)
+                
+        except Exception as e:
+            logging.error(f"Update check failed: {str(e)}")
+
+    def show_update_notification(self, new_version, release):
+        """Show update dialog with your repo's information"""
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information)
+        msg.setWindowTitle(f"Stake Monitor v{new_version} Available")
+        msg.setText(f"<b>Version {new_version} is available!</b>")
+        msg.setInformativeText(
+            f"You're using v{__version__}\n\n"
+            f"{release.get('body', 'Bug fixes and improvements')}\n\n"
+            "Would you like to download the update?"
+        )
+        
+        # Add custom buttons
+        msg.addButton("Download", QMessageBox.AcceptRole)
+        msg.addButton("Later", QMessageBox.RejectRole)
+        
+        # Store the URL in the message box object
+        msg.release_url = release['html_url']
+        
+        # Connect the button click signal
+        msg.buttonClicked.connect(lambda btn: self.handle_update_response(btn, msg))
+        msg.exec_()
+
+    def handle_update_response(self, button, message_box):
+        """Handle the user's response to the update notification"""
+        if button.text() == "Download":
+            webbrowser.open(message_box.release_url)
+        # No action needed for "Later" button
 
     def init_main_tab(self):
         layout = QVBoxLayout()
@@ -128,7 +285,7 @@ class CortensorDashboard(QMainWindow):
         price_layout = QHBoxLayout()
         
         self.btc_price_label = QLabel("BTC: $0.00")
-        self.btc_price_label.setStyleSheet("font-weight: bold; font-size: 14px; color: #f7931a;")  # Bitcoin orange
+        self.btc_price_label.setStyleSheet("font-weight: bold; font-size: 14px; color: #f7931a;")
         
         self.eth_price_label = QLabel("ETH: $0.00")
         self.eth_price_label.setStyleSheet("font-weight: bold; font-size: 14px; color: #3498db;")
@@ -136,10 +293,14 @@ class CortensorDashboard(QMainWindow):
         self.cor_price_label = QLabel("COR: $0.00")
         self.cor_price_label.setStyleSheet("font-weight: bold; font-size: 14px; color: #27ae60;")
         
+        self.apr_label = QLabel("APR: 0%")
+        self.apr_label.setStyleSheet("font-weight: bold; font-size: 14px; color: #9b59b6;")
+        
         price_layout.addWidget(self.btc_price_label)
         price_layout.addWidget(self.eth_price_label)
         price_layout.addWidget(self.cor_price_label)
-        price_layout.addStretch()  # Push prices to the right
+        price_layout.addWidget(self.apr_label)
+        price_layout.addStretch()
         
         layout.addLayout(price_layout)
 
@@ -151,11 +312,38 @@ class CortensorDashboard(QMainWindow):
 
         # Main table
         self.table = QTableWidget()
-        self.table.setColumnCount(8)
+        self.table.setEditTriggers(QTableWidget.NoEditTriggers)
+        self.table.setSelectionBehavior(QTableWidget.SelectRows)
+        self.table.setSelectionMode(QTableWidget.SingleSelection)
+        
+        # Updated column count and order with Time Staked
+        self.table.setColumnCount(10)
         self.table.setHorizontalHeaderLabels([
-            "Address", "ETH", "COR", "Staked", "Daily Reward", "Time Staked", "$ETH", "$COR"
+            "Address", "ETH", "COR", "Staked", "Daily Reward", "Claimable", 
+            "Time Staked", "Reward Value", "$ETH", "$COR"
         ])
+        
+        # Set minimum column widths (adjust these values as needed)
+        self.min_column_widths = {
+            0: 390,  # Address
+            1: 80,   # ETH
+            2: 80,   # COR
+            3: 110,  # Staked
+            4: 110,  # Daily Reward
+            5: 110,  # Claimable
+            6: 120,  # Time Staked
+            7: 120,  # Reward Value
+            8: 80,   # $ETH
+            9: 80    # $COR
+        }
+        
+        # Apply minimum widths
+        for col, width in self.min_column_widths.items():
+            self.table.setColumnWidth(col, width)
+        
         self.table.horizontalHeader().sectionClicked.connect(self.handle_sort)
+        self.table.cellClicked.connect(self.show_address_details)
+        
         layout.addWidget(self.table)
 
         refresh_btn = QPushButton("Refresh")
@@ -174,20 +362,22 @@ class CortensorDashboard(QMainWindow):
             self.eth_price = eth_price
             self.cor_price = cor_price
             
-            # Update the display
+            # Update the display with HTML for persistent colors
             self.btc_price_label.setText(f"<font color='#f7931a'>BTC: ${btc_price:,.2f}</font>")
             self.eth_price_label.setText(f"<font color='#3498db'>ETH: ${eth_price:,.2f}</font>")
             self.cor_price_label.setText(f"<font color='#27ae60'>COR: ${cor_price:,.6f}</font>")
+            self.apr_label.setText(f"<font color='#9b59b6'>APR: {self.current_apr:.0%}</font>")
             
             # Optional: Flash the background when updated
             self.flash_price_background()
             
         except Exception as e:
             logging.error(f"Error updating prices: {str(e)}")
-            # Show error state
+            # Show error state with persistent colors
             self.btc_price_label.setText("<font color='#f7931a'>BTC: API Error</font>")
             self.eth_price_label.setText("<font color='#3498db'>ETH: API Error</font>")
             self.cor_price_label.setText("<font color='#27ae60'>COR: API Error</font>")
+            self.apr_label.setText("<font color='#9b59b6'>APR: N/A</font>")
 
     def flash_price_background(self):
         """Visual feedback when prices update"""
@@ -209,14 +399,20 @@ class CortensorDashboard(QMainWindow):
             color: #27ae60;
             background-color: #e8f5e9;
         """)
+        self.apr_label.setStyleSheet("""
+            font-weight: bold;
+            font-size: 14px;
+            color: #9b59b6;
+            background-color: #f5eef8;
+        """)
         
         # Reset after 500ms
         QTimer.singleShot(500, lambda: [
             self.btc_price_label.setStyleSheet("font-weight: bold; font-size: 14px; color: #f7931a;"),
             self.eth_price_label.setStyleSheet("font-weight: bold; font-size: 14px; color: #3498db;"),
-            self.cor_price_label.setStyleSheet("font-weight: bold; font-size: 14px; color: #27ae60;")
+            self.cor_price_label.setStyleSheet("font-weight: bold; font-size: 14px; color: #27ae60;"),
+            self.apr_label.setStyleSheet("font-weight: bold; font-size: 14px; color: #9b59b6;")
         ])
-
 
     def handle_sort(self, column):
         if column < 0 or column >= self.table.columnCount():
@@ -275,6 +471,9 @@ class CortensorDashboard(QMainWindow):
 
             save_stats_data(stats)
 
+            # Get APR from first address that has it
+            self.current_apr = next((data.get('current_apr', 0) for data in stats.values() if 'current_apr' in data), 0)
+            
             row_count = len(self.addresses) + 1
             self.table.setRowCount(row_count)
 
@@ -284,26 +483,31 @@ class CortensorDashboard(QMainWindow):
             total_eth_usd = 0.0
             total_cort_usd = 0.0
             total_reward = 0.0
+            total_claimable = 0.0
+            total_rewards_value = 0.0
 
             for row, address in enumerate(self.addresses):
                 data = stats.get(address, {
                     "eth_balance": 0.0,
                     "cortensor_balance": 0.0,
                     "staked_balance": 0.0,
+                    "daily_reward": 0.0,
+                    "claimable_rewards": 0.0,
+                    "time_staked_ago": "N/A",
+                    "rewards_value_usd": 0.0,
                     "eth_value_usd": 0.0,
-                    "cortensor_value_usd": 0.0,
-                    "time_staked_ago": "N/A"
+                    "cortensor_value_usd": 0.0
                 })
-                staked = data["staked_balance"]
-                daily_reward = staked * 0.0016438356164384
 
                 row_data = [
                     address,
                     f"{data['eth_balance']:.4f}",
                     f"{data['cortensor_balance']:.4f}",
-                    f"{staked:.4f}",
-                    f"{daily_reward:.4f}",
+                    f"{data['staked_balance']:.4f}",
+                    f"{data['daily_reward']:.4f}",
+                    f"{data['claimable_rewards']:.4f}",
                     data["time_staked_ago"],
+                    f"${data['rewards_value_usd']:.2f}",
                     f"${data['eth_value_usd']:.2f}",
                     f"${data['cortensor_value_usd']:.2f}",
                 ]
@@ -311,14 +515,24 @@ class CortensorDashboard(QMainWindow):
                 for col, value in enumerate(row_data):
                     item = QTableWidgetItem(value)
                     item.setTextAlignment(Qt.AlignCenter)
+                    
+                    if col == 0:  # Address column
+                        item.setForeground(Qt.blue)
+                        font = item.font()
+                        font.setUnderline(True)
+                        item.setFont(font)
+                        item.setToolTip("Click for address details")
+                    
                     self.table.setItem(row, col, item)
 
                 total_eth += data["eth_balance"]
                 total_cort += data["cortensor_balance"]
-                total_staked += staked
+                total_staked += data["staked_balance"]
                 total_eth_usd += data["eth_value_usd"]
                 total_cort_usd += data["cortensor_value_usd"]
-                total_reward += daily_reward
+                total_reward += data["daily_reward"]
+                total_claimable += data["claimable_rewards"]
+                total_rewards_value += data["rewards_value_usd"]
 
             total_row = row_count - 1
             total_data = [
@@ -327,7 +541,9 @@ class CortensorDashboard(QMainWindow):
                 f"{total_cort:.4f}",
                 f"{total_staked:.4f}",
                 f"{total_reward:.4f}",
+                f"{total_claimable:.4f}",
                 "",
+                f"${total_rewards_value:.2f}",
                 f"${total_eth_usd:.2f}",
                 f"${total_cort_usd:.2f}",
             ]
@@ -335,6 +551,11 @@ class CortensorDashboard(QMainWindow):
                 item = QTableWidgetItem(value)
                 item.setTextAlignment(Qt.AlignCenter)
                 self.table.setItem(total_row, col, item)
+
+            # Ensure minimum column widths are maintained
+            for col, width in self.min_column_widths.items():
+                if self.table.columnWidth(col) < width:
+                    self.table.setColumnWidth(col, width)
 
             logging.info("Data loaded successfully")
             

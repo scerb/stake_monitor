@@ -1,0 +1,2167 @@
+{
+  "1": {
+    "position": 1,
+    "staked_balance": 19559897.99936738,
+    "raw_balance": "19559897999367378407477026"
+  },
+  "2": {
+    "position": 2,
+    "staked_balance": 14298303.834403886,
+    "raw_balance": "14298303834403885219844931"
+  },
+  "3": {
+    "position": 3,
+    "staked_balance": 12801378.9738,
+    "raw_balance": "12801378973800000000000000"
+  },
+  "4": {
+    "position": 4,
+    "staked_balance": 6202522.482910929,
+    "raw_balance": "6202522482910928999066827"
+  },
+  "5": {
+    "position": 5,
+    "staked_balance": 5663208.372752827,
+    "raw_balance": "5663208372752826692892567"
+  },
+  "6": {
+    "position": 6,
+    "staked_balance": 5597400.0,
+    "raw_balance": "5597400000000000000000000"
+  },
+  "7": {
+    "position": 7,
+    "staked_balance": 5495789.550145873,
+    "raw_balance": "5495789550145873026082047"
+  },
+  "8": {
+    "position": 8,
+    "staked_balance": 4351527.957319866,
+    "raw_balance": "4351527957319865813743594"
+  },
+  "9": {
+    "position": 9,
+    "staked_balance": 4282496.0,
+    "raw_balance": "4282496000000000000000000"
+  },
+  "10": {
+    "position": 10,
+    "staked_balance": 4167439.4683394334,
+    "raw_balance": "4167439468339433658512234"
+  },
+  "11": {
+    "position": 11,
+    "staked_balance": 3623583.91341968,
+    "raw_balance": "3623583913419680080426033"
+  },
+  "12": {
+    "position": 12,
+    "staked_balance": 3593275.35291672,
+    "raw_balance": "3593275352916720000000000"
+  },
+  "13": {
+    "position": 13,
+    "staked_balance": 3357021.808887542,
+    "raw_balance": "3357021808887542038974194"
+  },
+  "14": {
+    "position": 14,
+    "staked_balance": 3100000.0,
+    "raw_balance": "3100000000000000000000000"
+  },
+  "15": {
+    "position": 15,
+    "staked_balance": 2820420.315934271,
+    "raw_balance": "2820420315934271312068767"
+  },
+  "16": {
+    "position": 16,
+    "staked_balance": 2724507.0,
+    "raw_balance": "2724507000000000000000000"
+  },
+  "17": {
+    "position": 17,
+    "staked_balance": 2615889.1240058397,
+    "raw_balance": "2615889124005839925793891"
+  },
+  "18": {
+    "position": 18,
+    "staked_balance": 2004103.0,
+    "raw_balance": "2004103000000000000000000"
+  },
+  "19": {
+    "position": 19,
+    "staked_balance": 1902879.4977171689,
+    "raw_balance": "1902879497717168949771688"
+  },
+  "20": {
+    "position": 20,
+    "staked_balance": 1789600.0,
+    "raw_balance": "1789600000000000000000000"
+  },
+  "21": {
+    "position": 21,
+    "staked_balance": 1650760.8743099298,
+    "raw_balance": "1650760874309929740406391"
+  },
+  "22": {
+    "position": 22,
+    "staked_balance": 1516667.0,
+    "raw_balance": "1516667000000000000000000"
+  },
+  "23": {
+    "position": 23,
+    "staked_balance": 1467881.346773612,
+    "raw_balance": "1467881346773612056074757"
+  },
+  "24": {
+    "position": 24,
+    "staked_balance": 1427208.4057302526,
+    "raw_balance": "1427208405730252649020327"
+  },
+  "25": {
+    "position": 25,
+    "staked_balance": 1143040.0,
+    "raw_balance": "1143040000000000000000000"
+  },
+  "26": {
+    "position": 26,
+    "staked_balance": 1103094.0,
+    "raw_balance": "1103094000000000000000000"
+  },
+  "27": {
+    "position": 27,
+    "staked_balance": 1067262.017037456,
+    "raw_balance": "1067262017037456000000000"
+  },
+  "28": {
+    "position": 28,
+    "staked_balance": 1057047.9245116354,
+    "raw_balance": "1057047924511635400000000"
+  },
+  "29": {
+    "position": 29,
+    "staked_balance": 1027225.0,
+    "raw_balance": "1027225000000000000000000"
+  },
+  "30": {
+    "position": 30,
+    "staked_balance": 1010146.0,
+    "raw_balance": "1010146000000000000000000"
+  },
+  "31": {
+    "position": 31,
+    "staked_balance": 1000000.0,
+    "raw_balance": "1000000000000000000000000"
+  },
+  "32": {
+    "position": 32,
+    "staked_balance": 990268.8868054254,
+    "raw_balance": "990268886805425349981827"
+  },
+  "33": {
+    "position": 33,
+    "staked_balance": 933334.0,
+    "raw_balance": "933334000000000000000000"
+  },
+  "34": {
+    "position": 34,
+    "staked_balance": 840558.0,
+    "raw_balance": "840558000000000000000000"
+  },
+  "35": {
+    "position": 35,
+    "staked_balance": 790239.7275736755,
+    "raw_balance": "790239727573675425120797"
+  },
+  "36": {
+    "position": 36,
+    "staked_balance": 775716.5159711848,
+    "raw_balance": "775716515971184870000000"
+  },
+  "37": {
+    "position": 37,
+    "staked_balance": 714905.1929491491,
+    "raw_balance": "714905192949149054891544"
+  },
+  "38": {
+    "position": 38,
+    "staked_balance": 705873.1887503493,
+    "raw_balance": "705873188750349360467692"
+  },
+  "39": {
+    "position": 39,
+    "staked_balance": 632155.5483508543,
+    "raw_balance": "632155548350854301863642"
+  },
+  "40": {
+    "position": 40,
+    "staked_balance": 631474.0,
+    "raw_balance": "631474000000000000000000"
+  },
+  "41": {
+    "position": 41,
+    "staked_balance": 631287.000040197,
+    "raw_balance": "631287000040197000000000"
+  },
+  "42": {
+    "position": 42,
+    "staked_balance": 616933.1712655885,
+    "raw_balance": "616933171265588460000000"
+  },
+  "43": {
+    "position": 43,
+    "staked_balance": 613980.0,
+    "raw_balance": "613980000000000000000000"
+  },
+  "44": {
+    "position": 44,
+    "staked_balance": 600000.0,
+    "raw_balance": "600000000000000000000000"
+  },
+  "45": {
+    "position": 45,
+    "staked_balance": 565962.9016573498,
+    "raw_balance": "565962901657349732991402"
+  },
+  "46": {
+    "position": 46,
+    "staked_balance": 552000.0,
+    "raw_balance": "552000000000000000000000"
+  },
+  "47": {
+    "position": 47,
+    "staked_balance": 544189.0,
+    "raw_balance": "544189000000000000000000"
+  },
+  "48": {
+    "position": 48,
+    "staked_balance": 530800.2678749245,
+    "raw_balance": "530800267874924524176949"
+  },
+  "49": {
+    "position": 49,
+    "staked_balance": 500000.0,
+    "raw_balance": "500000000000000000000000"
+  },
+  "50": {
+    "position": 50,
+    "staked_balance": 467842.7562568068,
+    "raw_balance": "467842756256806794223321"
+  },
+  "51": {
+    "position": 51,
+    "staked_balance": 433334.0,
+    "raw_balance": "433334000000000000000000"
+  },
+  "52": {
+    "position": 52,
+    "staked_balance": 418715.0,
+    "raw_balance": "418715000000000000000000"
+  },
+  "53": {
+    "position": 53,
+    "staked_balance": 414211.3360200237,
+    "raw_balance": "414211336020023701656906"
+  },
+  "54": {
+    "position": 54,
+    "staked_balance": 412338.45794383564,
+    "raw_balance": "412338457943835616438356"
+  },
+  "55": {
+    "position": 55,
+    "staked_balance": 342530.20547945204,
+    "raw_balance": "342530205479452054794520"
+  },
+  "56": {
+    "position": 56,
+    "staked_balance": 336329.1640180081,
+    "raw_balance": "336329164018008100000000"
+  },
+  "57": {
+    "position": 57,
+    "staked_balance": 324480.3645576512,
+    "raw_balance": "324480364557651212809690"
+  },
+  "58": {
+    "position": 58,
+    "staked_balance": 320000.0,
+    "raw_balance": "320000000000000000000000"
+  },
+  "59": {
+    "position": 59,
+    "staked_balance": 316000.3252293543,
+    "raw_balance": "316000325229354292807918"
+  },
+  "60": {
+    "position": 60,
+    "staked_balance": 312493.0,
+    "raw_balance": "312493000000000000000000"
+  },
+  "61": {
+    "position": 61,
+    "staked_balance": 309340.2346676628,
+    "raw_balance": "309340234667662850000000"
+  },
+  "62": {
+    "position": 62,
+    "staked_balance": 300000.0,
+    "raw_balance": "300000000000000000000000"
+  },
+  "63": {
+    "position": 63,
+    "staked_balance": 285284.0,
+    "raw_balance": "285284000000000000000000"
+  },
+  "64": {
+    "position": 64,
+    "staked_balance": 275574.9097573104,
+    "raw_balance": "275574909757310380373591"
+  },
+  "65": {
+    "position": 65,
+    "staked_balance": 260000.0,
+    "raw_balance": "260000000000000000000000"
+  },
+  "66": {
+    "position": 66,
+    "staked_balance": 254841.0,
+    "raw_balance": "254841000000000000000000"
+  },
+  "67": {
+    "position": 67,
+    "staked_balance": 253639.0,
+    "raw_balance": "253639000000000000000000"
+  },
+  "68": {
+    "position": 68,
+    "staked_balance": 250000.0,
+    "raw_balance": "250000000000000000000000"
+  },
+  "69": {
+    "position": 69,
+    "staked_balance": 246291.61849718093,
+    "raw_balance": "246291618497180917465513"
+  },
+  "70": {
+    "position": 70,
+    "staked_balance": 244348.0,
+    "raw_balance": "244348000000000000000000"
+  },
+  "71": {
+    "position": 71,
+    "staked_balance": 220054.7601382049,
+    "raw_balance": "220054760138204900000000"
+  },
+  "72": {
+    "position": 72,
+    "staked_balance": 213690.7465370283,
+    "raw_balance": "213690746537028285213103"
+  },
+  "73": {
+    "position": 73,
+    "staked_balance": 202023.86116033906,
+    "raw_balance": "202023861160339046502699"
+  },
+  "74": {
+    "position": 74,
+    "staked_balance": 200000.0,
+    "raw_balance": "200000000000000000000000"
+  },
+  "75": {
+    "position": 75,
+    "staked_balance": 193398.7847918999,
+    "raw_balance": "193398784791899890614046"
+  },
+  "76": {
+    "position": 76,
+    "staked_balance": 185057.0,
+    "raw_balance": "185057000000000000000000"
+  },
+  "77": {
+    "position": 77,
+    "staked_balance": 184866.78884011882,
+    "raw_balance": "184866788840118823688387"
+  },
+  "78": {
+    "position": 78,
+    "staked_balance": 180228.27995,
+    "raw_balance": "180228279950000000000000"
+  },
+  "79": {
+    "position": 79,
+    "staked_balance": 178935.7330554542,
+    "raw_balance": "178935733055454210000000"
+  },
+  "80": {
+    "position": 80,
+    "staked_balance": 171615.35106023803,
+    "raw_balance": "171615351060238038685962"
+  },
+  "81": {
+    "position": 81,
+    "staked_balance": 160910.3741187075,
+    "raw_balance": "160910374118707500000000"
+  },
+  "82": {
+    "position": 82,
+    "staked_balance": 150936.0,
+    "raw_balance": "150936000000000000000000"
+  },
+  "83": {
+    "position": 83,
+    "staked_balance": 149999.0,
+    "raw_balance": "149999000000000000000000"
+  },
+  "84": {
+    "position": 84,
+    "staked_balance": 144422.46904441013,
+    "raw_balance": "144422469044410139533325"
+  },
+  "85": {
+    "position": 85,
+    "staked_balance": 141720.0,
+    "raw_balance": "141720000000000000000000"
+  },
+  "86": {
+    "position": 86,
+    "staked_balance": 124568.0,
+    "raw_balance": "124568000000000000000000"
+  },
+  "87": {
+    "position": 87,
+    "staked_balance": 121653.1079733377,
+    "raw_balance": "121653107973337702980941"
+  },
+  "88": {
+    "position": 88,
+    "staked_balance": 111144.18142184644,
+    "raw_balance": "111144181421846444490337"
+  },
+  "89": {
+    "position": 89,
+    "staked_balance": 109759.22631642429,
+    "raw_balance": "109759226316424296246880"
+  },
+  "90": {
+    "position": 90,
+    "staked_balance": 102699.45633235268,
+    "raw_balance": "102699456332352683932178"
+  },
+  "91": {
+    "position": 91,
+    "staked_balance": 100000.0,
+    "raw_balance": "100000000000000000000000"
+  },
+  "92": {
+    "position": 92,
+    "staked_balance": 100000.0,
+    "raw_balance": "100000000000000000000000"
+  },
+  "93": {
+    "position": 93,
+    "staked_balance": 92664.0,
+    "raw_balance": "92664000000000000000000"
+  },
+  "94": {
+    "position": 94,
+    "staked_balance": 87484.0,
+    "raw_balance": "87484000000000000000000"
+  },
+  "95": {
+    "position": 95,
+    "staked_balance": 86600.0,
+    "raw_balance": "86600000000000000000000"
+  },
+  "96": {
+    "position": 96,
+    "staked_balance": 80000.0,
+    "raw_balance": "80000000000000000000000"
+  },
+  "97": {
+    "position": 97,
+    "staked_balance": 68195.25966747977,
+    "raw_balance": "68195259667479763319377"
+  },
+  "98": {
+    "position": 98,
+    "staked_balance": 66616.0,
+    "raw_balance": "66616000000000000000000"
+  },
+  "99": {
+    "position": 99,
+    "staked_balance": 62100.0,
+    "raw_balance": "62100000000000000000000"
+  },
+  "100": {
+    "position": 100,
+    "staked_balance": 57850.85678653857,
+    "raw_balance": "57850856786538570000000"
+  },
+  "101": {
+    "position": 101,
+    "staked_balance": 55788.66,
+    "raw_balance": "55788660000000000000000"
+  },
+  "102": {
+    "position": 102,
+    "staked_balance": 53481.473944286605,
+    "raw_balance": "53481473944286603098258"
+  },
+  "103": {
+    "position": 103,
+    "staked_balance": 52709.0,
+    "raw_balance": "52709000000000000000000"
+  },
+  "104": {
+    "position": 104,
+    "staked_balance": 50000.0,
+    "raw_balance": "50000000000000000000000"
+  },
+  "105": {
+    "position": 105,
+    "staked_balance": 45563.64182860032,
+    "raw_balance": "45563641828600316648147"
+  },
+  "106": {
+    "position": 106,
+    "staked_balance": 44705.9374246154,
+    "raw_balance": "44705937424615400000000"
+  },
+  "107": {
+    "position": 107,
+    "staked_balance": 43171.0,
+    "raw_balance": "43171000000000000000000"
+  },
+  "108": {
+    "position": 108,
+    "staked_balance": 40465.0,
+    "raw_balance": "40465000000000000000000"
+  },
+  "109": {
+    "position": 109,
+    "staked_balance": 40245.0,
+    "raw_balance": "40245000000000000000000"
+  },
+  "110": {
+    "position": 110,
+    "staked_balance": 40178.92237749726,
+    "raw_balance": "40178922377497260000000"
+  },
+  "111": {
+    "position": 111,
+    "staked_balance": 40000.0,
+    "raw_balance": "40000000000000000000000"
+  },
+  "112": {
+    "position": 112,
+    "staked_balance": 35059.4932041224,
+    "raw_balance": "35059493204122400000000"
+  },
+  "113": {
+    "position": 113,
+    "staked_balance": 33000.0,
+    "raw_balance": "33000000000000000000000"
+  },
+  "114": {
+    "position": 114,
+    "staked_balance": 32860.0,
+    "raw_balance": "32860000000000000000000"
+  },
+  "115": {
+    "position": 115,
+    "staked_balance": 31757.0,
+    "raw_balance": "31757000000000000000000"
+  },
+  "116": {
+    "position": 116,
+    "staked_balance": 31705.720751875968,
+    "raw_balance": "31705720751875968884963"
+  },
+  "117": {
+    "position": 117,
+    "staked_balance": 31089.7079199234,
+    "raw_balance": "31089707919923400000000"
+  },
+  "118": {
+    "position": 118,
+    "staked_balance": 30000.161215820473,
+    "raw_balance": "30000161215820474870681"
+  },
+  "119": {
+    "position": 119,
+    "staked_balance": 30000.0,
+    "raw_balance": "30000000000000000000000"
+  },
+  "120": {
+    "position": 120,
+    "staked_balance": 28645.0,
+    "raw_balance": "28645000000000000000000"
+  },
+  "121": {
+    "position": 121,
+    "staked_balance": 28470.15363175826,
+    "raw_balance": "28470153631758263123627"
+  },
+  "122": {
+    "position": 122,
+    "staked_balance": 27184.828615424336,
+    "raw_balance": "27184828615424334939797"
+  },
+  "123": {
+    "position": 123,
+    "staked_balance": 26059.4111089227,
+    "raw_balance": "26059411108922699509113"
+  },
+  "124": {
+    "position": 124,
+    "staked_balance": 25589.93359775721,
+    "raw_balance": "25589933597757209196121"
+  },
+  "125": {
+    "position": 125,
+    "staked_balance": 24764.73200883822,
+    "raw_balance": "24764732008838218288119"
+  },
+  "126": {
+    "position": 126,
+    "staked_balance": 23973.80369255054,
+    "raw_balance": "23973803692550541840123"
+  },
+  "127": {
+    "position": 127,
+    "staked_balance": 23337.0,
+    "raw_balance": "23337000000000000000000"
+  },
+  "128": {
+    "position": 128,
+    "staked_balance": 21000.0,
+    "raw_balance": "21000000000000000000000"
+  },
+  "129": {
+    "position": 129,
+    "staked_balance": 20500.0,
+    "raw_balance": "20500000000000000000000"
+  },
+  "130": {
+    "position": 130,
+    "staked_balance": 20054.917002143316,
+    "raw_balance": "20054917002143317506176"
+  },
+  "131": {
+    "position": 131,
+    "staked_balance": 20000.0,
+    "raw_balance": "20000000000000000000000"
+  },
+  "132": {
+    "position": 132,
+    "staked_balance": 20000.0,
+    "raw_balance": "20000000000000000000000"
+  },
+  "133": {
+    "position": 133,
+    "staked_balance": 20000.0,
+    "raw_balance": "20000000000000000000000"
+  },
+  "134": {
+    "position": 134,
+    "staked_balance": 18244.322541827227,
+    "raw_balance": "18244322541827225527621"
+  },
+  "135": {
+    "position": 135,
+    "staked_balance": 16516.34447221627,
+    "raw_balance": "16516344472216270000000"
+  },
+  "136": {
+    "position": 136,
+    "staked_balance": 14218.471941939672,
+    "raw_balance": "14218471941939671136228"
+  },
+  "137": {
+    "position": 137,
+    "staked_balance": 14000.0,
+    "raw_balance": "14000000000000000000000"
+  },
+  "138": {
+    "position": 138,
+    "staked_balance": 12950.0,
+    "raw_balance": "12950000000000000000000"
+  },
+  "139": {
+    "position": 139,
+    "staked_balance": 12079.613233678347,
+    "raw_balance": "12079613233678345750489"
+  },
+  "140": {
+    "position": 140,
+    "staked_balance": 11982.937021460642,
+    "raw_balance": "11982937021460641700000"
+  },
+  "141": {
+    "position": 141,
+    "staked_balance": 11706.467412850316,
+    "raw_balance": "11706467412850315160000"
+  },
+  "142": {
+    "position": 142,
+    "staked_balance": 11238.062348306197,
+    "raw_balance": "11238062348306197631051"
+  },
+  "143": {
+    "position": 143,
+    "staked_balance": 10839.5437,
+    "raw_balance": "10839543700000000000000"
+  },
+  "144": {
+    "position": 144,
+    "staked_balance": 10301.744026006185,
+    "raw_balance": "10301744026006184942297"
+  },
+  "145": {
+    "position": 145,
+    "staked_balance": 10008.047841274383,
+    "raw_balance": "10008047841274382820286"
+  },
+  "146": {
+    "position": 146,
+    "staked_balance": 10000.0,
+    "raw_balance": "10000000000000000000000"
+  },
+  "147": {
+    "position": 147,
+    "staked_balance": 8550.0,
+    "raw_balance": "8550000000000000000000"
+  },
+  "148": {
+    "position": 148,
+    "staked_balance": 8000.0,
+    "raw_balance": "8000000000000000000000"
+  },
+  "149": {
+    "position": 149,
+    "staked_balance": 7346.379786245319,
+    "raw_balance": "7346379786245319353591"
+  },
+  "150": {
+    "position": 150,
+    "staked_balance": 7291.627207491093,
+    "raw_balance": "7291627207491092723740"
+  },
+  "151": {
+    "position": 151,
+    "staked_balance": 6112.265996525623,
+    "raw_balance": "6112265996525623227107"
+  },
+  "152": {
+    "position": 152,
+    "staked_balance": 4181.272893414405,
+    "raw_balance": "4181272893414405605345"
+  },
+  "153": {
+    "position": 153,
+    "staked_balance": 4174.262929527926,
+    "raw_balance": "4174262929527925623501"
+  },
+  "154": {
+    "position": 154,
+    "staked_balance": 4123.299813522494,
+    "raw_balance": "4123299813522494425622"
+  },
+  "155": {
+    "position": 155,
+    "staked_balance": 4100.0,
+    "raw_balance": "4100000000000000000000"
+  },
+  "156": {
+    "position": 156,
+    "staked_balance": 4060.0,
+    "raw_balance": "4060000000000000000000"
+  },
+  "157": {
+    "position": 157,
+    "staked_balance": 4040.7054371935565,
+    "raw_balance": "4040705437193556620249"
+  },
+  "158": {
+    "position": 158,
+    "staked_balance": 4033.9867438783153,
+    "raw_balance": "4033986743878315342540"
+  },
+  "159": {
+    "position": 159,
+    "staked_balance": 4026.272620436195,
+    "raw_balance": "4026272620436195163427"
+  },
+  "160": {
+    "position": 160,
+    "staked_balance": 4024.091981785486,
+    "raw_balance": "4024091981785485956972"
+  },
+  "161": {
+    "position": 161,
+    "staked_balance": 4023.0221350204843,
+    "raw_balance": "4023022135020484311900"
+  },
+  "162": {
+    "position": 162,
+    "staked_balance": 4021.952715057163,
+    "raw_balance": "4021952715057163178054"
+  },
+  "163": {
+    "position": 163,
+    "staked_balance": 4012.7074729039837,
+    "raw_balance": "4012707472903983482333"
+  },
+  "164": {
+    "position": 164,
+    "staked_balance": 4010.0,
+    "raw_balance": "4010000000000000000000"
+  },
+  "165": {
+    "position": 165,
+    "staked_balance": 4010.0,
+    "raw_balance": "4010000000000000000000"
+  },
+  "166": {
+    "position": 166,
+    "staked_balance": 4010.0,
+    "raw_balance": "4010000000000000000000"
+  },
+  "167": {
+    "position": 167,
+    "staked_balance": 4010.0,
+    "raw_balance": "4010000000000000000000"
+  },
+  "168": {
+    "position": 168,
+    "staked_balance": 4010.0,
+    "raw_balance": "4010000000000000000000"
+  },
+  "169": {
+    "position": 169,
+    "staked_balance": 4010.0,
+    "raw_balance": "4010000000000000000000"
+  },
+  "170": {
+    "position": 170,
+    "staked_balance": 4010.0,
+    "raw_balance": "4010000000000000000000"
+  },
+  "171": {
+    "position": 171,
+    "staked_balance": 4010.0,
+    "raw_balance": "4010000000000000000000"
+  },
+  "172": {
+    "position": 172,
+    "staked_balance": 4010.0,
+    "raw_balance": "4010000000000000000000"
+  },
+  "173": {
+    "position": 173,
+    "staked_balance": 4010.0,
+    "raw_balance": "4010000000000000000000"
+  },
+  "174": {
+    "position": 174,
+    "staked_balance": 4008.727470419568,
+    "raw_balance": "4008727470419568034894"
+  },
+  "175": {
+    "position": 175,
+    "staked_balance": 4008.151146258023,
+    "raw_balance": "4008151146258022860846"
+  },
+  "176": {
+    "position": 176,
+    "staked_balance": 4007.659900333807,
+    "raw_balance": "4007659900333806752091"
+  },
+  "177": {
+    "position": 177,
+    "staked_balance": 4005.1199275058843,
+    "raw_balance": "4005119927505884549659"
+  },
+  "178": {
+    "position": 178,
+    "staked_balance": 4005.0,
+    "raw_balance": "4005000000000000000000"
+  },
+  "179": {
+    "position": 179,
+    "staked_balance": 4005.0,
+    "raw_balance": "4005000000000000000000"
+  },
+  "180": {
+    "position": 180,
+    "staked_balance": 4005.0,
+    "raw_balance": "4005000000000000000000"
+  },
+  "181": {
+    "position": 181,
+    "staked_balance": 4004.925459087126,
+    "raw_balance": "4004925459087126071803"
+  },
+  "182": {
+    "position": 182,
+    "staked_balance": 4004.0607910077497,
+    "raw_balance": "4004060791007749718331"
+  },
+  "183": {
+    "position": 183,
+    "staked_balance": 4003.0020747903814,
+    "raw_balance": "4003002074790381197684"
+  },
+  "184": {
+    "position": 184,
+    "staked_balance": 4001.0,
+    "raw_balance": "4001000000000000000000"
+  },
+  "185": {
+    "position": 185,
+    "staked_balance": 4001.0,
+    "raw_balance": "4001000000000000000000"
+  },
+  "186": {
+    "position": 186,
+    "staked_balance": 4001.0,
+    "raw_balance": "4001000000000000000000"
+  },
+  "187": {
+    "position": 187,
+    "staked_balance": 4001.0,
+    "raw_balance": "4001000000000000000000"
+  },
+  "188": {
+    "position": 188,
+    "staked_balance": 4001.0,
+    "raw_balance": "4001000000000000000000"
+  },
+  "189": {
+    "position": 189,
+    "staked_balance": 4001.0,
+    "raw_balance": "4001000000000000000000"
+  },
+  "190": {
+    "position": 190,
+    "staked_balance": 4001.0,
+    "raw_balance": "4001000000000000000000"
+  },
+  "191": {
+    "position": 191,
+    "staked_balance": 4001.0,
+    "raw_balance": "4001000000000000000000"
+  },
+  "192": {
+    "position": 192,
+    "staked_balance": 4001.0,
+    "raw_balance": "4001000000000000000000"
+  },
+  "193": {
+    "position": 193,
+    "staked_balance": 4001.0,
+    "raw_balance": "4001000000000000000000"
+  },
+  "194": {
+    "position": 194,
+    "staked_balance": 4001.0,
+    "raw_balance": "4001000000000000000000"
+  },
+  "195": {
+    "position": 195,
+    "staked_balance": 4001.0,
+    "raw_balance": "4001000000000000000000"
+  },
+  "196": {
+    "position": 196,
+    "staked_balance": 4001.0,
+    "raw_balance": "4001000000000000000000"
+  },
+  "197": {
+    "position": 197,
+    "staked_balance": 4001.0,
+    "raw_balance": "4001000000000000000000"
+  },
+  "198": {
+    "position": 198,
+    "staked_balance": 4001.0,
+    "raw_balance": "4001000000000000000000"
+  },
+  "199": {
+    "position": 199,
+    "staked_balance": 4001.0,
+    "raw_balance": "4001000000000000000000"
+  },
+  "200": {
+    "position": 200,
+    "staked_balance": 4001.0,
+    "raw_balance": "4001000000000000000000"
+  },
+  "201": {
+    "position": 201,
+    "staked_balance": 4001.0,
+    "raw_balance": "4001000000000000000000"
+  },
+  "202": {
+    "position": 202,
+    "staked_balance": 4001.0,
+    "raw_balance": "4001000000000000000000"
+  },
+  "203": {
+    "position": 203,
+    "staked_balance": 4001.0,
+    "raw_balance": "4001000000000000000000"
+  },
+  "204": {
+    "position": 204,
+    "staked_balance": 4001.0,
+    "raw_balance": "4001000000000000000000"
+  },
+  "205": {
+    "position": 205,
+    "staked_balance": 4000.4450622044556,
+    "raw_balance": "4000445062204455451472"
+  },
+  "206": {
+    "position": 206,
+    "staked_balance": 4000.248354930421,
+    "raw_balance": "4000248354930420922781"
+  },
+  "207": {
+    "position": 207,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "208": {
+    "position": 208,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "209": {
+    "position": 209,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "210": {
+    "position": 210,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "211": {
+    "position": 211,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "212": {
+    "position": 212,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "213": {
+    "position": 213,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "214": {
+    "position": 214,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "215": {
+    "position": 215,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "216": {
+    "position": 216,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "217": {
+    "position": 217,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "218": {
+    "position": 218,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "219": {
+    "position": 219,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "220": {
+    "position": 220,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "221": {
+    "position": 221,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "222": {
+    "position": 222,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "223": {
+    "position": 223,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "224": {
+    "position": 224,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "225": {
+    "position": 225,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "226": {
+    "position": 226,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "227": {
+    "position": 227,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "228": {
+    "position": 228,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "229": {
+    "position": 229,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "230": {
+    "position": 230,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "231": {
+    "position": 231,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "232": {
+    "position": 232,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "233": {
+    "position": 233,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "234": {
+    "position": 234,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "235": {
+    "position": 235,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "236": {
+    "position": 236,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "237": {
+    "position": 237,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "238": {
+    "position": 238,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "239": {
+    "position": 239,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "240": {
+    "position": 240,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "241": {
+    "position": 241,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "242": {
+    "position": 242,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "243": {
+    "position": 243,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "244": {
+    "position": 244,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "245": {
+    "position": 245,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "246": {
+    "position": 246,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "247": {
+    "position": 247,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "248": {
+    "position": 248,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "249": {
+    "position": 249,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "250": {
+    "position": 250,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "251": {
+    "position": 251,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "252": {
+    "position": 252,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "253": {
+    "position": 253,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "254": {
+    "position": 254,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "255": {
+    "position": 255,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "256": {
+    "position": 256,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "257": {
+    "position": 257,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "258": {
+    "position": 258,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "259": {
+    "position": 259,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "260": {
+    "position": 260,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "261": {
+    "position": 261,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "262": {
+    "position": 262,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "263": {
+    "position": 263,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "264": {
+    "position": 264,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "265": {
+    "position": 265,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "266": {
+    "position": 266,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "267": {
+    "position": 267,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "268": {
+    "position": 268,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "269": {
+    "position": 269,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "270": {
+    "position": 270,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "271": {
+    "position": 271,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "272": {
+    "position": 272,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "273": {
+    "position": 273,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "274": {
+    "position": 274,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "275": {
+    "position": 275,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "276": {
+    "position": 276,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "277": {
+    "position": 277,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "278": {
+    "position": 278,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "279": {
+    "position": 279,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "280": {
+    "position": 280,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "281": {
+    "position": 281,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "282": {
+    "position": 282,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "283": {
+    "position": 283,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "284": {
+    "position": 284,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "285": {
+    "position": 285,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "286": {
+    "position": 286,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "287": {
+    "position": 287,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "288": {
+    "position": 288,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "289": {
+    "position": 289,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "290": {
+    "position": 290,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "291": {
+    "position": 291,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "292": {
+    "position": 292,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "293": {
+    "position": 293,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "294": {
+    "position": 294,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "295": {
+    "position": 295,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "296": {
+    "position": 296,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "297": {
+    "position": 297,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "298": {
+    "position": 298,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "299": {
+    "position": 299,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "300": {
+    "position": 300,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "301": {
+    "position": 301,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "302": {
+    "position": 302,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "303": {
+    "position": 303,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "304": {
+    "position": 304,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "305": {
+    "position": 305,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "306": {
+    "position": 306,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "307": {
+    "position": 307,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "308": {
+    "position": 308,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "309": {
+    "position": 309,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "310": {
+    "position": 310,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "311": {
+    "position": 311,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "312": {
+    "position": 312,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "313": {
+    "position": 313,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "314": {
+    "position": 314,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "315": {
+    "position": 315,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "316": {
+    "position": 316,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "317": {
+    "position": 317,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "318": {
+    "position": 318,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "319": {
+    "position": 319,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "320": {
+    "position": 320,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "321": {
+    "position": 321,
+    "staked_balance": 4000.0,
+    "raw_balance": "4000000000000000000000"
+  },
+  "322": {
+    "position": 322,
+    "staked_balance": 3978.6192423157,
+    "raw_balance": "3978619242315699978620"
+  },
+  "323": {
+    "position": 323,
+    "staked_balance": 3504.0269786197346,
+    "raw_balance": "3504026978619734376751"
+  },
+  "324": {
+    "position": 324,
+    "staked_balance": 3390.8496564373195,
+    "raw_balance": "3390849656437319633574"
+  },
+  "325": {
+    "position": 325,
+    "staked_balance": 3382.0,
+    "raw_balance": "3382000000000000000000"
+  },
+  "326": {
+    "position": 326,
+    "staked_balance": 3001.0,
+    "raw_balance": "3001000000000000000000"
+  },
+  "327": {
+    "position": 327,
+    "staked_balance": 2827.0393439704962,
+    "raw_balance": "2827039343970496131639"
+  },
+  "328": {
+    "position": 328,
+    "staked_balance": 2774.714874784164,
+    "raw_balance": "2774714874784163882228"
+  },
+  "329": {
+    "position": 329,
+    "staked_balance": 2517.0,
+    "raw_balance": "2517000000000000000000"
+  },
+  "330": {
+    "position": 330,
+    "staked_balance": 2300.0,
+    "raw_balance": "2300000000000000000000"
+  },
+  "331": {
+    "position": 331,
+    "staked_balance": 2153.4922852093955,
+    "raw_balance": "2153492285209395500000"
+  },
+  "332": {
+    "position": 332,
+    "staked_balance": 2061.362675979576,
+    "raw_balance": "2061362675979576297382"
+  },
+  "333": {
+    "position": 333,
+    "staked_balance": 2060.8085881502498,
+    "raw_balance": "2060808588150249635811"
+  },
+  "334": {
+    "position": 334,
+    "staked_balance": 2038.6848841665883,
+    "raw_balance": "2038684884166588397793"
+  },
+  "335": {
+    "position": 335,
+    "staked_balance": 2033.0814184348853,
+    "raw_balance": "2033081418434885384568"
+  },
+  "336": {
+    "position": 336,
+    "staked_balance": 2023.684847893191,
+    "raw_balance": "2023684847893191000000"
+  },
+  "337": {
+    "position": 337,
+    "staked_balance": 2005.3572633222773,
+    "raw_balance": "2005357263322277190884"
+  },
+  "338": {
+    "position": 338,
+    "staked_balance": 2001.2649089133358,
+    "raw_balance": "2001264908913335717645"
+  },
+  "339": {
+    "position": 339,
+    "staked_balance": 2000.0,
+    "raw_balance": "2000000000000000000000"
+  },
+  "340": {
+    "position": 340,
+    "staked_balance": 2000.0,
+    "raw_balance": "2000000000000000000000"
+  },
+  "341": {
+    "position": 341,
+    "staked_balance": 2000.0,
+    "raw_balance": "2000000000000000000000"
+  },
+  "342": {
+    "position": 342,
+    "staked_balance": 2000.0,
+    "raw_balance": "2000000000000000000000"
+  },
+  "343": {
+    "position": 343,
+    "staked_balance": 2000.0,
+    "raw_balance": "2000000000000000000000"
+  },
+  "344": {
+    "position": 344,
+    "staked_balance": 1755.0,
+    "raw_balance": "1755000000000000000000"
+  },
+  "345": {
+    "position": 345,
+    "staked_balance": 1533.0,
+    "raw_balance": "1533000000000000000000"
+  },
+  "346": {
+    "position": 346,
+    "staked_balance": 1524.7535492618817,
+    "raw_balance": "1524753549261881700000"
+  },
+  "347": {
+    "position": 347,
+    "staked_balance": 1477.2169151517755,
+    "raw_balance": "1477216915151775500000"
+  },
+  "348": {
+    "position": 348,
+    "staked_balance": 1458.3783857131334,
+    "raw_balance": "1458378385713133326658"
+  },
+  "349": {
+    "position": 349,
+    "staked_balance": 1313.5735431694516,
+    "raw_balance": "1313573543169451493765"
+  },
+  "350": {
+    "position": 350,
+    "staked_balance": 1200.0,
+    "raw_balance": "1200000000000000000000"
+  },
+  "351": {
+    "position": 351,
+    "staked_balance": 1198.0,
+    "raw_balance": "1198000000000000000000"
+  },
+  "352": {
+    "position": 352,
+    "staked_balance": 1013.0,
+    "raw_balance": "1013000000000000000000"
+  },
+  "353": {
+    "position": 353,
+    "staked_balance": 1002.0,
+    "raw_balance": "1002000000000000000000"
+  },
+  "354": {
+    "position": 354,
+    "staked_balance": 1000.6970069855957,
+    "raw_balance": "1000697006985595700000"
+  },
+  "355": {
+    "position": 355,
+    "staked_balance": 1000.0,
+    "raw_balance": "1000000000000000000000"
+  },
+  "356": {
+    "position": 356,
+    "staked_balance": 966.8659887442561,
+    "raw_balance": "966865988744256100000"
+  },
+  "357": {
+    "position": 357,
+    "staked_balance": 951.0,
+    "raw_balance": "951000000000000000000"
+  },
+  "358": {
+    "position": 358,
+    "staked_balance": 900.0,
+    "raw_balance": "900000000000000000000"
+  },
+  "359": {
+    "position": 359,
+    "staked_balance": 859.0450244350527,
+    "raw_balance": "859045024435052700000"
+  },
+  "360": {
+    "position": 360,
+    "staked_balance": 855.0,
+    "raw_balance": "855000000000000000000"
+  },
+  "361": {
+    "position": 361,
+    "staked_balance": 840.0,
+    "raw_balance": "840000000000000000000"
+  },
+  "362": {
+    "position": 362,
+    "staked_balance": 800.0,
+    "raw_balance": "800000000000000000000"
+  },
+  "363": {
+    "position": 363,
+    "staked_balance": 774.2161421235286,
+    "raw_balance": "774216142123528600000"
+  },
+  "364": {
+    "position": 364,
+    "staked_balance": 772.7768434070068,
+    "raw_balance": "772776843407006780000"
+  },
+  "365": {
+    "position": 365,
+    "staked_balance": 770.0,
+    "raw_balance": "770000000000000000000"
+  },
+  "366": {
+    "position": 366,
+    "staked_balance": 762.0,
+    "raw_balance": "762000000000000000000"
+  },
+  "367": {
+    "position": 367,
+    "staked_balance": 751.0,
+    "raw_balance": "751000000000000000000"
+  },
+  "368": {
+    "position": 368,
+    "staked_balance": 749.0,
+    "raw_balance": "749000000000000000000"
+  },
+  "369": {
+    "position": 369,
+    "staked_balance": 747.7979939988664,
+    "raw_balance": "747797993998866400000"
+  },
+  "370": {
+    "position": 370,
+    "staked_balance": 745.0,
+    "raw_balance": "745000000000000000000"
+  },
+  "371": {
+    "position": 371,
+    "staked_balance": 733.9319869162224,
+    "raw_balance": "733931986916222400000"
+  },
+  "372": {
+    "position": 372,
+    "staked_balance": 724.8210486651386,
+    "raw_balance": "724821048665138600000"
+  },
+  "373": {
+    "position": 373,
+    "staked_balance": 712.3842289105481,
+    "raw_balance": "712384228910548122002"
+  },
+  "374": {
+    "position": 374,
+    "staked_balance": 703.6650619546589,
+    "raw_balance": "703665061954658900000"
+  },
+  "375": {
+    "position": 375,
+    "staked_balance": 703.6220028267273,
+    "raw_balance": "703622002826727293554"
+  },
+  "376": {
+    "position": 376,
+    "staked_balance": 700.0,
+    "raw_balance": "700000000000000000000"
+  },
+  "377": {
+    "position": 377,
+    "staked_balance": 700.0,
+    "raw_balance": "700000000000000000000"
+  },
+  "378": {
+    "position": 378,
+    "staked_balance": 700.0,
+    "raw_balance": "700000000000000000000"
+  },
+  "379": {
+    "position": 379,
+    "staked_balance": 700.0,
+    "raw_balance": "700000000000000000000"
+  },
+  "380": {
+    "position": 380,
+    "staked_balance": 700.0,
+    "raw_balance": "700000000000000000000"
+  },
+  "381": {
+    "position": 381,
+    "staked_balance": 690.0,
+    "raw_balance": "690000000000000000000"
+  },
+  "382": {
+    "position": 382,
+    "staked_balance": 688.0,
+    "raw_balance": "688000000000000000000"
+  },
+  "383": {
+    "position": 383,
+    "staked_balance": 660.0872403274193,
+    "raw_balance": "660087240327419300000"
+  },
+  "384": {
+    "position": 384,
+    "staked_balance": 654.0,
+    "raw_balance": "654000000000000000000"
+  },
+  "385": {
+    "position": 385,
+    "staked_balance": 640.9727700169874,
+    "raw_balance": "640972770016987400000"
+  },
+  "386": {
+    "position": 386,
+    "staked_balance": 639.0,
+    "raw_balance": "639000000000000000000"
+  },
+  "387": {
+    "position": 387,
+    "staked_balance": 632.0,
+    "raw_balance": "632000000000000000000"
+  },
+  "388": {
+    "position": 388,
+    "staked_balance": 630.7739352868098,
+    "raw_balance": "630773935286809800000"
+  },
+  "389": {
+    "position": 389,
+    "staked_balance": 625.8897152209734,
+    "raw_balance": "625889715220973302735"
+  },
+  "390": {
+    "position": 390,
+    "staked_balance": 624.5622962846562,
+    "raw_balance": "624562296284656200000"
+  },
+  "391": {
+    "position": 391,
+    "staked_balance": 620.0,
+    "raw_balance": "620000000000000000000"
+  },
+  "392": {
+    "position": 392,
+    "staked_balance": 610.3088646968993,
+    "raw_balance": "610308864696899300000"
+  },
+  "393": {
+    "position": 393,
+    "staked_balance": 610.0,
+    "raw_balance": "610000000000000000000"
+  },
+  "394": {
+    "position": 394,
+    "staked_balance": 607.2614046112808,
+    "raw_balance": "607261404611280800000"
+  },
+  "395": {
+    "position": 395,
+    "staked_balance": 603.1123767091543,
+    "raw_balance": "603112376709154300000"
+  },
+  "396": {
+    "position": 396,
+    "staked_balance": 601.0,
+    "raw_balance": "601000000000000000000"
+  },
+  "397": {
+    "position": 397,
+    "staked_balance": 600.0,
+    "raw_balance": "600000000000000000000"
+  },
+  "398": {
+    "position": 398,
+    "staked_balance": 600.0,
+    "raw_balance": "600000000000000000000"
+  },
+  "399": {
+    "position": 399,
+    "staked_balance": 594.373975950064,
+    "raw_balance": "594373975950064000000"
+  },
+  "400": {
+    "position": 400,
+    "staked_balance": 592.0218565906631,
+    "raw_balance": "592021856590663100000"
+  },
+  "401": {
+    "position": 401,
+    "staked_balance": 583.357727427005,
+    "raw_balance": "583357727427005000000"
+  },
+  "402": {
+    "position": 402,
+    "staked_balance": 560.8578383196328,
+    "raw_balance": "560857838319632800000"
+  },
+  "403": {
+    "position": 403,
+    "staked_balance": 555.2,
+    "raw_balance": "555200000000000000000"
+  },
+  "404": {
+    "position": 404,
+    "staked_balance": 550.0,
+    "raw_balance": "550000000000000000000"
+  },
+  "405": {
+    "position": 405,
+    "staked_balance": 548.8386734695258,
+    "raw_balance": "548838673469525800000"
+  },
+  "406": {
+    "position": 406,
+    "staked_balance": 538.0,
+    "raw_balance": "538000000000000000000"
+  },
+  "407": {
+    "position": 407,
+    "staked_balance": 535.0,
+    "raw_balance": "535000000000000000000"
+  },
+  "408": {
+    "position": 408,
+    "staked_balance": 528.9635666539162,
+    "raw_balance": "528963566653916200000"
+  },
+  "409": {
+    "position": 409,
+    "staked_balance": 528.7677130542689,
+    "raw_balance": "528767713054268900000"
+  },
+  "410": {
+    "position": 410,
+    "staked_balance": 528.616169277986,
+    "raw_balance": "528616169277986000000"
+  },
+  "411": {
+    "position": 411,
+    "staked_balance": 525.0,
+    "raw_balance": "525000000000000000000"
+  },
+  "412": {
+    "position": 412,
+    "staked_balance": 522.0,
+    "raw_balance": "522000000000000000000"
+  },
+  "413": {
+    "position": 413,
+    "staked_balance": 520.0,
+    "raw_balance": "520000000000000000000"
+  },
+  "414": {
+    "position": 414,
+    "staked_balance": 520.0,
+    "raw_balance": "520000000000000000000"
+  },
+  "415": {
+    "position": 415,
+    "staked_balance": 515.7802408708426,
+    "raw_balance": "515780240870842620000"
+  },
+  "416": {
+    "position": 416,
+    "staked_balance": 505.3939906866055,
+    "raw_balance": "505393990686605500000"
+  },
+  "417": {
+    "position": 417,
+    "staked_balance": 503.0,
+    "raw_balance": "503000000000000000000"
+  },
+  "418": {
+    "position": 418,
+    "staked_balance": 500.0,
+    "raw_balance": "500000000000000000000"
+  },
+  "419": {
+    "position": 419,
+    "staked_balance": 500.0,
+    "raw_balance": "500000000000000000000"
+  },
+  "420": {
+    "position": 420,
+    "staked_balance": 497.0,
+    "raw_balance": "497000000000000000000"
+  },
+  "421": {
+    "position": 421,
+    "staked_balance": 487.0,
+    "raw_balance": "487000000000000000000"
+  },
+  "422": {
+    "position": 422,
+    "staked_balance": 485.779116568746,
+    "raw_balance": "485779116568746000000"
+  },
+  "423": {
+    "position": 423,
+    "staked_balance": 485.4411174785839,
+    "raw_balance": "485441117478583900000"
+  },
+  "424": {
+    "position": 424,
+    "staked_balance": 472.0,
+    "raw_balance": "472000000000000000000"
+  },
+  "425": {
+    "position": 425,
+    "staked_balance": 472.0,
+    "raw_balance": "472000000000000000000"
+  },
+  "426": {
+    "position": 426,
+    "staked_balance": 460.0,
+    "raw_balance": "460000000000000000000"
+  },
+  "427": {
+    "position": 427,
+    "staked_balance": 459.0908756539968,
+    "raw_balance": "459090875653996800000"
+  },
+  "428": {
+    "position": 428,
+    "staked_balance": 430.3,
+    "raw_balance": "430300000000000000000"
+  },
+  "429": {
+    "position": 429,
+    "staked_balance": 400.0,
+    "raw_balance": "400000000000000000000"
+  },
+  "430": {
+    "position": 430,
+    "staked_balance": 312.2907657264556,
+    "raw_balance": "312290765726455600000"
+  },
+  "431": {
+    "position": 431,
+    "staked_balance": 163.90997512544544,
+    "raw_balance": "163909975125445433187"
+  },
+  "432": {
+    "position": 432,
+    "staked_balance": 100.0,
+    "raw_balance": "100000000000000000000"
+  },
+  "433": {
+    "position": 433,
+    "staked_balance": 20.0,
+    "raw_balance": "20000000000000000000"
+  }
+}
