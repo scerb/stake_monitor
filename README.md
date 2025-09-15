@@ -2,13 +2,21 @@
 
 ---
 
-to run staking app, python gui.py, to run transaction analyzer, python tx_analyzer_app.py
+## staking app
+
+python gui.py
+
+## transaction analyzer
+
+python tx_analyzer_app.py 
+
+- you will need to get an etherscan api key by creating an account at etherscan.io
 
 ---
 
 compare your staking addresses with others to find out where you rank!
 
-cortensor staking and monitoring app in windows just download exe and run.
+
 
 linux- pull files, need to run in venv, any missing modules install as needed eg pip3 install matplotlib
 then run with python3 gui.py
