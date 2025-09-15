@@ -9,7 +9,7 @@ from web3 import Web3
 
 def get_current_prices():
     """Fetch current prices directly from APIs"""
-    return fetch_prices() 
+    return fetch_prices()
 
 # Initialize Web3 with multiple fallback providers
 def init_web3():
@@ -18,7 +18,7 @@ def init_web3():
         "https://eth.llamarpc.com",
         "https://rpc.ankr.com/eth"
     ]
-    
+
     for provider_url in providers:
         try:
             web3 = Web3(Web3.HTTPProvider(provider_url, request_kwargs={'timeout': 10}))
@@ -27,7 +27,7 @@ def init_web3():
                 return web3
         except Exception as e:
             print(f"Failed to connect to {provider_url}: {e}")
-    
+
     raise ConnectionError("Could not connect to any Ethereum provider")
 
 web3 = init_web3()
@@ -115,7 +115,7 @@ def time_ago(timestamp):
     then = datetime.fromtimestamp(timestamp)
     delta = now - then
     seconds = int(delta.total_seconds())
-    
+
     if seconds < 60:
         return f"{seconds} sec ago"
     elif seconds < 3600:
@@ -127,32 +127,43 @@ def time_ago(timestamp):
 
 def load_addresses_from_data_json():
     try:
-        with open("data.json", "r") as f:
+        with open(get_data_path("data.json"), "r") as f:
             data = json.load(f)
-            
+
             # Handle both formats:
             if isinstance(data, dict):
-                if "addresses" in data:  # New format with "addresses" key
+                if "addresses" in data:
                     return [
-                        Web3.to_checksum_address(addr) 
-                        for addr in data["addresses"] 
+                        Web3.to_checksum_address(addr)
+                        for addr in data["addresses"]
                         if Web3.is_address(addr)
                     ]
-                else:  # Old format with address keys
+                else:
                     return [
-                        Web3.to_checksum_address(k) 
-                        for k in data.keys() 
+                        Web3.to_checksum_address(k)
+                        for k in data.keys()
                         if Web3.is_address(k)
                     ]
-            elif isinstance(data, list):  # Legacy format
+            elif isinstance(data, list):
                 return [
-                    Web3.to_checksum_address(addr) 
-                    for addr in data 
+                    Web3.to_checksum_address(addr)
+                    for addr in data
                     if Web3.is_address(addr)
                 ]
     except Exception as e:
         print(f"Error loading addresses: {e}")
     return []
+
+def load_existing_data():
+    """Load existing data from JSON file including all fields"""
+    try:
+        with open(get_data_path("data.json"), "r") as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+    except Exception as e:
+        print(f"Error loading existing data: {e}")
+        return {}
 
 def fetch_prices():
     """Fetch ETH, COR and BTC prices with retries and fallbacks"""
@@ -170,112 +181,163 @@ def fetch_prices():
             eth_price = price_data["ethereum"]["usd"]
             btc_price = price_data["bitcoin"]["usd"]
 
-            # Cortensor price with fallback
+            # Cortensor price with GeckoTerminal, fallback if needed
             try:
+                network, pool = GECKO_POOL_ID.split('_', 1)
                 cortensor_response = requests.get(
-                    f"https://api.geckoterminal.com/api/v2/networks/{GECKO_POOL_ID.split('_')[0]}/pools/{GECKO_POOL_ID.split('_')[1]}",
+                    f"https://api.geckoterminal.com/api/v2/networks/{network}/pools/{pool}",
                     timeout=10
                 )
                 cortensor_response.raise_for_status()
-                cortensor_price = float(cortensor_response.json()["data"]["attributes"]["base_token_price_usd"])
+                cortensor_price = float(
+                    cortensor_response.json()["data"]["attributes"]["base_token_price_usd"]
+                )
             except Exception as e:
                 print(f"GeckoTerminal API failed, using fallback price: {e}")
-                cortensor_price = 0.0001 * eth_price  # Example fallback ratio
+                cortensor_price = 0.0001 * eth_price  # simple conservative fallback
 
             return eth_price, cortensor_price, btc_price
-            
+
         except Exception as e:
             print(f"Price fetch attempt {attempt + 1} failed: {e}")
             if attempt < retries - 1:
-                time.sleep(2)
-    
-    return 0.0, 0.0, 0.0 # Return safe defaults if all retries fail
+                time.sleep(10)
 
-def get_rewards_data(address):
-    """Fetch rewards data for a single address"""
+    return 0.0, 0.0, 0.0
+
+def _get_rewards_data(checksum):
+    """Fetch rewards data for a single checksum address"""
     try:
-        checksum = Web3.to_checksum_address(address)
         claimable_rewards = rewards_contract.functions.rewardOf(checksum).call()
         apr = rewards_contract.functions.fixedAPR().call() / 100  # Convert to decimal
-        
         return {
-            "claimable_rewards": claimable_rewards / 1e18,  # Convert from wei
+            "claimable_rewards": claimable_rewards / 1e18,
             "current_apr": apr
         }
     except Exception as e:
-        print(f"Error fetching rewards for {address}: {e}")
-        return {
-            "claimable_rewards": 0,
-            "current_apr": 0
+        print(f"Error fetching rewards for {checksum}: {e}")
+        return {"claimable_rewards": 0, "current_apr": 0}
+
+def _process_address(checksum, eth_price, cortensor_price, token_decimals):
+    """Compute all metrics for one address; returns (checksum, data) or None."""
+    try:
+        # ETH balance
+        eth_balance = web3.eth.get_balance(checksum) / 1e18
+
+        # Cortensor token balance
+        balance = token_contract.functions.balanceOf(checksum).call()
+        cortensor_balance = balance / (10 ** token_decimals)
+
+        # Staking info
+        shares = staking_contract.functions.shares(checksum).call()
+        staked_amount = shares[0] / 1e18
+        staked_time = shares[1]
+        staked_time_ago = time_ago(staked_time)
+
+        # Rewards info
+        rewards_data = _get_rewards_data(checksum)
+        claimable_rewards = rewards_data["claimable_rewards"]
+        current_apr = rewards_data["current_apr"]
+
+        cortensor_total = cortensor_balance + staked_amount
+        total_value_usd = cortensor_total * cortensor_price
+        rewards_value_usd = claimable_rewards * cortensor_price
+
+        result_data = {
+            "eth_balance": round(eth_balance, 4),
+            "eth_value_usd": round(eth_balance * eth_price, 2),
+            "cortensor_balance": round(cortensor_balance, 4),
+            "staked_balance": round(staked_amount, 4),
+            "cortensor_value_usd": round(total_value_usd, 6),
+            "time_staked_ago": staked_time_ago,
+            "claimable_rewards": round(claimable_rewards, 4),
+            "current_apr": round(current_apr, 4),
+            "rewards_value_usd": round(rewards_value_usd, 6),
+            "daily_reward": round(staked_amount * current_apr / 365, 4)
         }
 
-def fetch_data(miner_ids, btc_price=None):
+        print(f"{checksum} -> ETH: {eth_balance:.4f} (${eth_balance * eth_price:.2f}), "
+              f"CORTENSOR: {cortensor_balance:.4f}, STAKED: {staked_amount:.4f}, "
+              f"REWARDS: {claimable_rewards:.4f}, APR: {current_apr:.2%}, "
+              f"TOTAL $: {total_value_usd:.2f}, AGO: {staked_time_ago}")
+
+        return checksum, result_data
+    except Exception as e:
+        print(f"Error processing {checksum}: {e}")
+        return None
+
+def fetch_data_stream(miner_ids, callback=None, max_workers=8):
+    """
+    Streamed fetching with controlled concurrency.
+    - Calls `callback(addr, data)` as each result arrives.
+    - Returns a dict of all results at the end.
+    """
     results = {}
     eth_price, cortensor_price, _ = fetch_prices()
-    
-    def process_address(addr):
-        try:
-            if not Web3.is_address(addr):
-                return None
-                
-            checksum = Web3.to_checksum_address(addr)
 
-            # ETH balance
-            eth_balance = web3.eth.get_balance(checksum) / 1e18
+    # Cache token decimals once
+    try:
+        token_decimals = token_contract.functions.decimals().call()
+    except Exception:
+        token_decimals = 18
 
-            # Cortensor token balance
-            balance = token_contract.functions.balanceOf(checksum).call()
-            decimals = token_contract.functions.decimals().call()
-            cortensor_balance = balance / (10 ** decimals)
+    # Normalize inputs to checksum first (fast validation pass)
+    checksums = []
+    for addr in miner_ids:
+        if not Web3.is_address(addr):
+            continue
+        checksums.append(Web3.to_checksum_address(addr))
 
-            # Staking info
-            shares = staking_contract.functions.shares(checksum).call()
-            staked_amount = shares[0] / 1e18
-            staked_time = shares[1]
-            staked_time_ago = time_ago(staked_time)
+    if not checksums:
+        return results
 
-            # Rewards info
-            rewards_data = get_rewards_data(checksum)
-            claimable_rewards = rewards_data["claimable_rewards"]
-            current_apr = rewards_data["current_apr"]
+    def task(addr_checksum):
+        return _process_address(addr_checksum, eth_price, cortensor_price, token_decimals)
 
-            cortensor_total = cortensor_balance + staked_amount
-            total_value_usd = cortensor_total * cortensor_price
-            rewards_value_usd = claimable_rewards * cortensor_price
-
-            result_data = {
-                "eth_balance": round(eth_balance, 4),
-                "eth_value_usd": round(eth_balance * eth_price, 2),
-                "cortensor_balance": round(cortensor_balance, 4),
-                "staked_balance": round(staked_amount, 4),
-                "cortensor_value_usd": round(total_value_usd, 2),
-                "time_staked_ago": staked_time_ago,
-                "claimable_rewards": round(claimable_rewards, 4),
-                "current_apr": round(current_apr, 4),
-                "rewards_value_usd": round(rewards_value_usd, 2),
-                "daily_reward": round(staked_amount * current_apr / 365, 4)  # Estimated daily reward
-            }
-
-            print(f"{checksum} -> ETH: {eth_balance:.4f} (${eth_balance * eth_price:.2f}), "
-                  f"CORTENSOR: {cortensor_balance:.4f}, STAKED: {staked_amount:.4f}, "
-                  f"REWARDS: {claimable_rewards:.4f}, APR: {current_apr:.2%}, "
-                  f"TOTAL $: {total_value_usd:.2f}, AGO: {staked_time_ago}")
-
-            return checksum, result_data
-        except Exception as e:
-            print(f"Error processing {addr}: {e}")
-            return None
-
-    # Use ThreadPoolExecutor with limited workers
-    with ThreadPoolExecutor(max_workers=5) as executor:
-        futures = {executor.submit(process_address, addr): addr for addr in miner_ids}
-        for future in as_completed(futures, timeout=30):
-            result = future.result()
-            if result:
-                addr, data = result
-                results[addr] = data
+    # Limit concurrency to be friendly with RPCs; 8 is a safe default
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        future_map = {executor.submit(task, cs): cs for cs in checksums}
+        for future in as_completed(future_map):
+            try:
+                res = future.result()
+                if res:
+                    addr, data = res
+                    results[addr] = data
+                    if callback:
+                        callback(addr, data)
+            except Exception as e:
+                print(f"Worker error: {e}")
 
     return results
+
+def fetch_data(miner_ids, btc_price=None):
+    """
+    Backwards-compatible function: returns a dict once all addresses complete.
+    Internally uses the streaming fetch for robustness.
+    """
+    return fetch_data_stream(miner_ids, callback=None, max_workers=8)
+
+def save_miner_data(new_data):
+    """Save miner data, forcing updates to USD values while preserving other fields."""
+    try:
+        existing_data = load_existing_data()
+
+        for address, new_values in new_data.items():
+            if address in existing_data:
+                preserved_fields = {
+                    k: v for k, v in existing_data[address].items()
+                    if not k.endswith('_value_usd') and k not in new_values
+                }
+                new_values.update(preserved_fields)
+
+            existing_data[address] = new_values
+
+        with open(get_data_path("data.json"), "w") as f:
+            json.dump(existing_data, f, indent=4)
+
+        print("✅ JSON updated with new USD values.")
+    except Exception as e:
+        print(f"❌ Error saving data: {e}")
 
 if __name__ == "__main__":
     try:
@@ -283,15 +345,15 @@ if __name__ == "__main__":
         if not addresses:
             print("No valid addresses found in data.json")
             sys.exit(1)
-            
+
         print(f"Fetching data for {len(addresses)} addresses...")
-        updated_data = fetch_data(addresses)
-        
-        data_path = get_data_path("data.json")
-        with open(data_path, "w") as f:
-            json.dump(updated_data, f, indent=4)
-            
-        print(f"Successfully updated {data_path}")
+        updated_data = fetch_data_stream(addresses)
+
+        if updated_data:
+            save_miner_data(updated_data)
+            print("Successfully updated miner data while preserving existing fields")
+        else:
+            print("No data was fetched")
     except Exception as e:
         print(f"Critical error: {e}")
         sys.exit(1)
